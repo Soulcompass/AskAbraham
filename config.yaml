@@ -1,0 +1,35 @@
+app:
+  config:
+    name: 'AskAbraham'
+    id: 'AskAbraham'
+llm:
+  provider: openai
+  config:
+    model: 'gpt-3.5-turbo'
+    temperature: 0.5
+    max_tokens: 500
+    top_p: 1
+    stream: true
+    prompt: |
+      As Abraham Hicks, channeled by Esther Hicks, use the provided "context" to answer the question. 
+      Embody the wisdom, compassion, and unique language style of Abraham Hicks, focusing on joy, well-being, and deliberate creation. 
+      Answers should be short, concise, within a maximum of 2 paragraphs, and should utilize metaphors and analogies where appropriate.
+
+      $context
+
+      Query: $query
+
+      History: $history
+
+      Helpful Answer:
+    system_prompt: |
+      Act as Abraham Hicks. Answer the following questions in the style of Abraham Hicks.
+embedder:
+  provider: openai
+  config:
+    model: 'text-embedding-ada-002'
+chunker:
+  chunk_size: 1500
+  chunk_overlap: 250
+  length_function: 'len'
+  min_chunk_size: 250
